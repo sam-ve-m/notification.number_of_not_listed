@@ -22,7 +22,7 @@ class NotificationRepository(MongoDbBaseRepository):
             raise ex
 
     @classmethod
-    async def count_notifications_not_listed(cls, unique_id: str) -> int:
+    async def count_unlisted_notifications(cls, unique_id: str) -> int:
         collection = await cls._get_collection()
         try:
             result = await collection.count_documents(
