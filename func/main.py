@@ -3,11 +3,7 @@ from src.domain.response.model import ResponseModel
 from src.domain.enums.response.code import InternalCode
 from src.services.jwt.service import JwtService
 from src.services.notifications_counter.service import NotificationCountService
-from src.domain.exceptions.base.base_exceptions import (
-    ServiceException,
-    DomainException,
-    RepositoryException,
-)
+from src.domain.exceptions.base.base_exceptions import ServiceException
 
 # Standards
 from http import HTTPStatus
@@ -21,7 +17,9 @@ async def get_number_of_unlisted_notifications() -> Response:
     try:
         jwt = request.headers.get("x-thebes-answer")
         unique_id = await JwtService.decode_jwt_and_get_unique_id(jwt=jwt)
-        result = await NotificationCountService.get_number_of_unlisted(unique_id=unique_id)
+        result = await NotificationCountService.get_number_of_unlisted(
+            unique_id=unique_id
+        )
         response = ResponseModel(
             success=True, result=result, code=InternalCode.SUCCESS
         ).build_http_response(status_code=HTTPStatus.OK)

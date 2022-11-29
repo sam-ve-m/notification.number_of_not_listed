@@ -1,4 +1,4 @@
-# Jormungandr - Onboarding
+# Jormungandr - Notifications
 from ...domain.exceptions.services.exception import ErrorOnDecodeJwt, ErrorOnGetUniqueId
 
 

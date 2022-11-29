@@ -1,4 +1,4 @@
-# Jormungandr - Onboarding
+# Jormungandr - Notifications
 from ....infrastructures.mongo_db.infrastructure import MongoDBInfrastructure
 
 # Standards
