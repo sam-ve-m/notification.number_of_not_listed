@@ -1,0 +1,23 @@
+apiVersion: fission.io/v1
+kind: HTTPTrigger
+metadata:
+  creationTimestamp: null
+  name: notification-count-unlisted-rt
+  namespace: default
+spec:
+  createingress: false
+  functionref:
+    functionweights: null
+    name: notification-count-unlisted-fn
+    type: name
+  host: ""
+  ingressconfig:
+    annotations: null
+    host: '*'
+    path: /notifications/count_unlisted
+    tls: ""
+  method: ""
+  methods:
+  - GET
+  prefix: ""
+  relativeurl: /notifications/count_unlisted
