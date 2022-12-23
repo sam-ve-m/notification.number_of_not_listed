@@ -8,8 +8,8 @@ from http import HTTPStatus
 
 class ErrorOnDecodeJwt(ServiceException):
     def __init__(self, *args, **kwargs):
-        self.msg = "Fail trying to decode jwt"
-        self.status_code = HTTPStatus.BAD_REQUEST
+        self.msg = "Failed when trying to decode or validate jwt"
+        self.status_code = HTTPStatus.UNAUTHORIZED
         self.internal_code = InternalCode.JWT_INVALID
         self.success = False
         super().__init__(
