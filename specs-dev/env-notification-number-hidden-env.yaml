@@ -2,27 +2,24 @@ apiVersion: fission.io/v1
 kind: Environment
 metadata:
   creationTimestamp: null
-  name: notification-count-unlisted-env
+  name: notification-count-miss-env
   namespace: default
 spec:
   builder:
-    command: build
     container:
       name: ""
       resources: {}
-    image: nexus.sigame.com.br/fission-builder-3.8:0.0.1
-  imagepullsecret: "nexus-v3"
+  imagepullsecret: nexus-v3
   keeparchive: false
-  poolsize: 3
   resources: {}
   runtime:
     container:
       name: ""
       resources: {}
-    image: nexus.sigame.com.br/fission-async:0.1.9
+    image: nexus.sigame.com.br/fission-notification-count-miss:0.1.0-2
     podspec:
       containers:
-        - name: notification-count-unlisted-env
+        - name: notification-count-miss-env
           env:
             - name: ROOT_LOG_LEVEL
               value: "INFO"

@@ -1,55 +1,61 @@
 include:
-- ./func/*
+- fission.py
 kind: ArchiveUploadSpec
-name: func-MU8H
+name: fission-py-L6lp
 
 ---
 apiVersion: fission.io/v1
 kind: Package
 metadata:
   creationTimestamp: null
-  name: notification-count-unliste-59bed6c4-63a2-42bc-a50b-a915e60d9d10
+  name: notification-count-miss-1f83aaa1-7b32-4e67-a2ae-dbdbfac40c87
   namespace: default
 spec:
   deployment:
     checksum: {}
+    type: url
+    url: archive://fission-py-L6lp
   environment:
-    name: notification-count-unlisted-env
+    name: notification-count-miss-env
     namespace: default
   source:
     checksum: {}
-    type: url
-    url: archive://func-MU8H
 status:
-  buildstatus: pending
-  lastUpdateTimestamp: "2022-11-29T22:04:27Z"
+  buildstatus: none
+  lastUpdateTimestamp: "2023-01-09T20:34:52Z"
 
 ---
 apiVersion: fission.io/v1
 kind: Function
 metadata:
   creationTimestamp: null
-  name: notification-count-unlisted-fn
+  name: notification-count-miss-fn
   namespace: default
 spec:
   InvokeStrategy:
     ExecutionStrategy:
       ExecutorType: newdeploy
-      MaxScale: 1
+      MaxScale: 3
       MinScale: 1
       SpecializationTimeout: 120
-      TargetCPUPercent: 80
+      TargetCPUPercent: 0
+      hpaMetrics:
+      - resource:
+          name: cpu
+          target:
+            averageUtilization: 80
+            type: Utilization
+        type: Resource
     StrategyType: execution
   concurrency: 500
   environment:
-    name: notification-count-unlisted-env
+    name: notification-count-miss-env
     namespace: default
   functionTimeout: 60
   idletimeout: 120
   package:
-    functionName: main.get_number_of_unlisted_notifications
     packageref:
-      name: notification-count-unliste-59bed6c4-63a2-42bc-a50b-a915e60d9d10
+      name: notification-count-miss-1f83aaa1-7b32-4e67-a2ae-dbdbfac40c87
       namespace: default
   requestsPerPod: 10000
   resources: {}

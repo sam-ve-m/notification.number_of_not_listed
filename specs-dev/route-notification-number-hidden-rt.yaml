@@ -2,13 +2,13 @@ apiVersion: fission.io/v1
 kind: HTTPTrigger
 metadata:
   creationTimestamp: null
-  name: notification-count-unlisted-rt
+  name: notification-count-miss-rt
   namespace: default
 spec:
   createingress: false
   functionref:
     functionweights: null
-    name: notification-count-unlisted-fn
+    name: notification-count-miss-fn
     type: name
   host: ""
   ingressconfig:
